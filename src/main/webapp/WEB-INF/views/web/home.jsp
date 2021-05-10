@@ -1,173 +1,103 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-
-<html>
-
-<head>
-
-<meta charset="UTF-8">
-<title>Trang chủ</title>
-
-</head>
-
-<body>
-
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<nav aria-label="breadcrumb">
-					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-						<li class="breadcrumb-item"><a href="#">Category</a></li>
-						<li class="breadcrumb-item active" aria-current="page">Sub-category</li>
-					</ol>
-				</nav>
-			</div>
+<%@ include file="/common/taglib.jsp"%>
+<c:url var="apiSort" value="/api/sort?page=1&limit=3&sortBy=price" />
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+					<li class="breadcrumb-item"><a href="#">Category</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Sub-category</li>
+				</ol>
+			</nav>
 		</div>
 	</div>
+</div>
 
+<form action="" id="formSubmit" method="get">
 	<div class="container">
 		<div class="row">
+			<div class="col-12">
+				<c:if test="${not empty message}">
+					<div id="alerts" class="wow fadeInUp alert alert-success">
+						<h5>${message}</h5>
+					</div>
+				</c:if>
+			</div>
+		</div>
+		<div class="row">
 			<div class="col-12 col-sm-3">
-				<div class="panel-group category-products" id="accordian">
-					<!--category-productsr-->
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<a data-toggle="collapse" data-parent="#accordian"
-									href="#sportswear" class="collapsed"> <span
-									class="badge pull-right"><i class="fa fa-plus"></i></span>
-									Sportswear
-								</a>
-							</h4>
-						</div>
-						<div id="sportswear" class="panel-collapse collapse">
-							<div class="panel-body">
-								<ul>
-									<li><a href="#">Nike </a></li>
-									<li><a href="#">Under Armour </a></li>
-									<li><a href="#">Adidas </a></li>
-									<li><a href="#">Puma</a></li>
-									<li><a href="#">ASICS </a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<a data-toggle="collapse" data-parent="#accordian" href="#mens"
-									class="collapsed"> <span class="badge pull-right"><i
-										class="fa fa-plus"></i></span> Mens
-								</a>
-							</h4>
-						</div>
-						<div id="mens" class="panel-collapse collapse">
-							<div class="panel-body">
-								<ul>
-									<li><a href="#">Fendi</a></li>
-									<li><a href="#">Guess</a></li>
-									<li><a href="#">Valentino</a></li>
-									<li><a href="#">Dior</a></li>
-									<li><a href="#">Versace</a></li>
-									<li><a href="#">Armani</a></li>
-									<li><a href="#">Prada</a></li>
-									<li><a href="#">Dolce and Gabbana</a></li>
-									<li><a href="#">Chanel</a></li>
-									<li><a href="#">Gucci</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
+				<h2>Category</h2>
 
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<a data-toggle="collapse" data-parent="#accordian"
-									href="#womens" class="collapsed"> <span
-									class="badge pull-right"><i class="fa fa-plus"></i></span>
-									Womens
-								</a>
-							</h4>
-						</div>
-						<div id="womens" class="panel-collapse collapse"
-							style="height: 0px;">
-							<div class="panel-body">
-								<ul>
-									<li><a href="#">Fendi</a></li>
-									<li><a href="#">Guess</a></li>
-									<li><a href="#">Valentino</a></li>
-									<li><a href="#">Dior</a></li>
-									<li><a href="#">Versace</a></li>
-								</ul>
+				<div class="panel-group category-products">
+					<!--category-productsr-->
+					<c:forEach items="${categories}" var="item">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<c:url var="b" value="/category/cateId=${item.id}">
+										<c:param name="page">1</c:param>
+										<c:param name="limit">6</c:param>
+									</c:url>
+
+									<a data-parent="#accordian" href="${b}"> <span
+										class="badge pull-right"><i class="fa fa-plus"></i></span>
+										${item.name}
+									</a>
+								</h4>
 							</div>
 						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<a href="#">Kids</a>
-							</h4>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<a href="#">Fashion</a>
-							</h4>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<a href="#">Households</a>
-							</h4>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<a href="#">Interiors</a>
-							</h4>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<a href="#">Clothing</a>
-							</h4>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<a href="#">Bags</a>
-							</h4>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<a href="#">Shoes</a>
-							</h4>
-						</div>
+					</c:forEach>
+				</div>
+				<!-- Search -->
+				<div class="search">
+					<h2>Search</h2>
+					<div
+						class="md-form md-outline mt-0 d-flex justify-content-between align-items-center mb-5">
+						<input type="search" name="key" class="form-control mb-0"
+							placeholder="Search..." style="font-size: 12px; outline: none;">
+						<c:url var="pr" value="/trang-chu/search">
+							<c:param name="page">1</c:param>
+							<c:param name="limit">6</c:param>
+						</c:url>
+						<input type="submit" id="sb" name="" value="       "
+							formaction="${pr}"
+							style="outline: none; margin-left: 10px; padding: 3px 7px; background: transparent; border: 1px solid #ced4da; border-radius: 3px;"><i
+							class="fa fa-search"
+							style="position: absolute; color: #636465; right: 15px;"></i></input>
 					</div>
 				</div>
 
-				<div class="card bg-light mb-3">
-					<div class="card-header bg-success text-white text-uppercase">Last
-						product</div>
-					<div class="card-body">
-						<img class="img-fluid"
-							src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg" />
-						<h5 class="card-title">Product title</h5>
-						<p class="card-text">Some quick example text to build on the
-							card title and make up the bulk of the card's content.</p>
-						<p class="bloc_left_price">99.00 $</p>
+				<!--brands_products-->
+				<div class="brands_products mb-4">
+					<h2>Brands</h2>
+					<div class="brands-name">
+						<ul class="nav nav-pills nav-stacked">
+							<li><a href=""> <span class="pull-right">(50)</span>Acne
+							</a></li>
+							<li><a href=""> <span class="pull-right">(56)</span>Grüne
+									Erde
+							</a></li>
+							<li><a href=""> <span class="pull-right">(27)</span>Albiro
+							</a></li>
+							<li><a href=""> <span class="pull-right">(32)</span>Ronhill
+							</a></li>
+							<li><a href=""> <span class="pull-right">(5)</span>Oddmolly
+							</a></li>
+						</ul>
 					</div>
+				</div>
+
+				<!-- Order now -->
+				<div class="mb-4 order">
+					<h2>Brands</h2>
+					<img class="img-fluid"
+						src="<c:url value='/template/images/shipping.jpg'/>" />
 				</div>
 			</div>
+
 			<div class="col-12 col-sm-9">
 				<div class="row mb-3">
 					<div class="col-md-6">
@@ -175,240 +105,101 @@
 					</div>
 
 					<div class="col-md-6">
-						<div
-							class="md-form md-outline mt-0 d-flex justify-content-between align-items-center">
-							<input type="text" id="search12" class="form-control mb-0"
-								placeholder="Search..." style="font-size: 12px; outline: none;"> <a href="#!"
-								class="btn-flat btn-md px-3 waves-effect"><i
-								class="fa fa-search"></i></a>
-						</div>
+						<select id="sortProduct"
+							onchange="window.location.href = this.options[this.selectedIndex].value"
+							style="padding: 4px 12px; margin-top: 17px; float: right; font-size: 14px; color: #696763; border: 1px solid #696763; border-radius: 4px;">
+							<option selected="selected" value="<c:url value="/trang-chu"/>">Default</option>
+							<option value="<c:url value="/sorts=asc_price?page=1&limit=6"/>">Price
+								increases gradually</option>
+							<option value="<c:url value="/sorts=desc_price?page=1&limit=6"/>">Price
+								decreased gradually</option>
+							<option value="<c:url value="/sorts=asc_az?page=1&limit=6"/>">Product
+								names from A to Z</option>
+							<option value="<c:url value="/sorts=desc_za?page=1&limit=6"/>">Product
+								names from Z to A</option>
+						</select>
 					</div>
 				</div>
 
 				<div class="row" id="products">
-
-					<div class="col-md-4 mb-5">
-						<div>
-							<div class="view zoom overlay rounded z-depth-2"
-								style="height: 260px;">
-								<img class="img-fluid w-100"
-									src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg"
-									alt="Sample"> <a href="#!">
-									<div class="mask">
-										<img class="img-fluid w-100"
-											src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg">
-										<div class="mask rgba-black-slight"></div>
-									</div>
-								</a>
-							</div>
-							<div class="text-center pt-4">
-								<h5>Fantasy T-shirt</h5>
-								<p>
-									<span class="mr-1"><strong>$12.99</strong></span>
-								</p>
-								<button type="button" class="btn btn-primary btn-sm mr-1 mb-2 waves-effect waves-light"><i class="fa fa-shopping-cart pr-2"></i>Add to cart</button>
-								<button type="button" class="btn btn-light btn-sm mr-1 mb-2 waves-effect waves-light"><i class="fa fa-info-circle pr-2"></i>Details</button>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-4 mb-5">
-						<div>
-							<div class="view zoom overlay rounded z-depth-2"
-								style="height: 260px;">
-								<img class="img-fluid w-100"
-									src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/10.jpg"
-									alt="Sample"> <a href="#!">
-									<div class="mask">
-										<img class="img-fluid w-100"
-											src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/10.jpg">
-										<div class="mask rgba-black-slight"></div>
-									</div>
-								</a>
-							</div>
-							<div class="text-center pt-4">
-								<h5>Boyfriend jeans</h5>
-								<p>
-									<span class="mr-1"><strong>$20.99</strong></span>
-								</p>
-								<button type="button" class="btn btn-primary btn-sm mr-1 mb-2 waves-effect waves-light"><i class="fa fa-shopping-cart pr-2"></i>Add to cart</button>
-								<button type="button" class="btn btn-light btn-sm mr-1 mb-2 waves-effect waves-light"><i class="fa fa-info-circle pr-2"></i>Details</button>
+					<c:forEach items="${product}" var="item">
+						<div class="col-md-4 mb-5">
+							<div>
+								<div class="view zoom overlay rounded z-depth-2"
+									style="height: 260px;">
+									<img class="img-fluid w-100 h-100"
+										src="<c:url value="/template/images/${item.thumbnail}"/>" alt="Sample">
+								</div>
+								<div class="text-center pt-4">
+									<h5>${ item.name}</h5>
+									<p>
+										<span class="mr-1"><strong>$ ${item.price}</strong></span>
+									</p>
+									<a
+										href="<c:url value="/cart/add/id=${item.id}/qty=${item.quantity}"/>"
+										style="color: #fff; font-size: 12px;"
+										class="btn btn-primary btn-sm mr-1 mb-2 waves-effect waves-light addCart">
+										<i class="fa fa-shopping-cart pr-2"></i>Add to cart
+									</a> <a
+										href="<c:url value="/detail/show/id=${item.id}/qty=${item.quantity}"/>"
+										style="color: #4f4f4f; font-size: 12px;"
+										class="btn btn-light btn-sm mr-1 mb-2 waves-effect waves-light">
+										<i class="fa fa-info-circle pr-2"></i> Details
+									</a>
+								</div>
 							</div>
 						</div>
-					</div>
-
-					<div class="col-md-4 mb-5">
-						<div>
-							<div class="view zoom overlay rounded z-depth-2"
-								style="height: 260px;">
-								<img class="img-fluid w-100"
-									src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/7.jpg"
-									alt="Sample"> <a href="#!">
-									<div class="mask">
-										<img class="img-fluid w-100"
-											src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/7.jpg">
-										<div class="mask rgba-black-slight"></div>
-									</div>
-								</a>
-							</div>
-							<div class="text-center pt-4">
-								<h5>Ripped sweatshirt</h5>
-								<p>
-									<span class="mr-1"><strong>$29.99</strong></span>
-								</p>
-								<button type="button" class="btn btn-primary btn-sm mr-1 mb-2 waves-effect waves-light"><i class="fa fa-shopping-cart pr-2"></i>Add to cart</button>
-								<button type="button" class="btn btn-light btn-sm mr-1 mb-2 waves-effect waves-light"><i class="fa fa-info-circle pr-2"></i>Details</button>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-4 mb-5">
-						<div>
-							<div class="view zoom overlay rounded z-depth-2"
-								style="height: 260px;">
-								<img class="img-fluid w-100"
-									src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/8.jpg"
-									alt="Sample"> <a href="#!">
-									<div class="mask">
-										<img class="img-fluid w-100"
-											src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/8.jpg">
-										<div class="mask rgba-black-slight"></div>
-									</div>
-								</a>
-							</div>
-							<div class="text-center pt-4">
-								<h5>Longsleeve</h5>
-								<p>
-									<span class="mr-1"><strong>$120.99</strong></span>
-								</p>
-								<button type="button" class="btn btn-primary btn-sm mr-1 mb-2 waves-effect waves-light"><i class="fa fa-shopping-cart pr-2"></i>Add to cart</button>
-								<button type="button" class="btn btn-light btn-sm mr-1 mb-2 waves-effect waves-light"><i class="fa fa-info-circle pr-2"></i>Details</button>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-4 mb-5">
-						<div>
-							<div class="view zoom overlay rounded z-depth-2"
-								style="height: 260px;">
-								<img class="img-fluid w-100"
-									src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/6.jpg"
-									alt="Sample"> <a href="#!">
-									<div class="mask">
-										<img class="img-fluid w-100"
-											src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/6.jpg">
-										<div class="mask rgba-black-slight"></div>
-									</div>
-								</a>
-							</div>
-							<div class="text-center pt-4">
-								<h5>Stripped sweatshirt</h5>
-								<p>
-									<span class="mr-1"><strong>$32.99</strong></span>
-								</p>
-								<button type="button" class="btn btn-primary btn-sm mr-1 mb-2 waves-effect waves-light"><i class="fa fa-shopping-cart pr-2"></i>Add to cart</button>
-								<button type="button" class="btn btn-light btn-sm mr-1 mb-2 waves-effect waves-light"><i class="fa fa-info-circle pr-2"></i>Details</button>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-4 mb-5">
-						<div>
-							<div class="view zoom overlay rounded z-depth-2"
-								style="height: 260px;">
-								<img class="img-fluid w-100"
-									src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/2.jpg"
-									alt="Sample"> <a href="#!">
-									<div class="mask">
-										<img class="img-fluid w-100"
-											src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/2.jpg">
-										<div class="mask rgba-black-slight"></div>
-									</div>
-								</a>
-							</div>
-							<div class="text-center pt-4">
-								<h5>Ballerina skirt</h5>
-								<p>
-									<span class="mr-1"><strong>$12.99</strong></span>
-								</p>
-								<button type="button" class="btn btn-primary btn-sm mr-1 mb-2 waves-effect waves-light"><i class="fa fa-shopping-cart pr-2"></i>Add to cart</button>
-								<button type="button" class="btn btn-light btn-sm mr-1 mb-2 waves-effect waves-light"><i class="fa fa-info-circle pr-2"></i>Details</button>
-							</div>
-						</div>
-					</div>
-
+					</c:forEach>
 				</div>
 			</div>
 		</div>
-		
-		<hr/>
-
-		<!--Section: Content-->
-		<section class="text-center mt-5">
-
-			<!-- Section heading -->
-			<h3 class="text-center mb-4">Why is it so great?</h3>
-			<!-- Section description -->
-			<p class="text-center w-sm-75 mx-auto mb-5">Lorem ipsum dolor sit
-				amet, consectetur adipisicing elit enim ad minima veniam, quis
-				nostrum exercitationem ullam. Reprehenderit maiores aperiam
-				assumenda deleniti voluptas ratione hic.</p>
-
-			<!-- Grid row -->
-			<div class="row">
-
-				<!-- Grid column -->
-				<div class="col-md-4 mb-5">
-
-					<i class="fa fa-book fa-3x text-primary" aria-hidden="true"></i>
-					<h5 class="my-4">Analytics</h5>
-					<p class="mb-0">Lorem ipsum dolor sit amet, consectetur
-						adipisicing elit. Reprehenderit maiores aperiam minima assumenda
-						deleniti hic.</p>
-
-				</div>
-				<!-- Grid column -->
-
-				<!-- Grid column -->
-				<div class="col-md-4 mb-5">
-
-					<i class="fa fa-book fa-3x text-primary"></i>
-					<h5 class="my-4">Tutorials</h5>
-					<p class="mb-0">Lorem ipsum dolor sit amet, consectetur
-						adipisicing elit. Reprehenderit maiores aperiam minima assumenda
-						deleniti hic.</p>
-
-				</div>
-				<!-- Grid column -->
-
-				<!-- Grid column -->
-				<div class="col-md-4 mb-5">
-
-					<i class="fa fa-comments fa-3x text-primary"></i>
-					<h5 class="my-4">Support</h5>
-					<p class="mb-0">Lorem ipsum dolor sit amet, consectetur
-						adipisicing elit. Reprehenderit maiores aperiam minima assumenda
-						deleniti hic.</p>
-
-				</div>
-				<!-- Grid column -->
-
-			</div>
-			<!-- Grid row -->
-
-		</section>
-		<!--Section: Content-->
+		<input type="hidden" value="" id="page" name="page" /> <input
+			type="hidden" value="" id="limit" name="limit" />
 	</div>
-	<script type="text/javascript">
-		$(function() {
-			window.pagObj = $('#pagination').twbsPagination({
-				totalPages : 10,
-				visiblePages : 3,
-				onPageClick : function(event, page) {
-					console.info(page + ' (from options)');
-				}
+</form>
+<script type="text/javascript">
+		var totalPages = ${model.totalPage},
+		startPage = ${model.page};
+		$(function () {
+	        window.pagObj = $('#pagination').twbsPagination({
+	        	totalPages: totalPages,
+		        visiblePages: 10,
+		        startPage: startPage,
+		        next: '>',
+		        prev: '<',
+		        onPageClick: function (event, page) {
+		        	if (startPage != page) {
+	            		$('#limit').val(6);
+						$('#page').val(page);
+						$('#formSubmit').submit();
+					}
+		        }
+	        });
+	        
+	        $('.cart').attr('data-before',$('#cartNumber').val());
+			
+			$('#sb').click(function(event, page){
+				$('#limit').val(3);
+				$('#page').val(1);
 			})
-		});
+			
+			new WOW().init(); 
+		})
+		
+		function sortAscPrice(e){
+			e.preventDefault();
+			$.ajax({
+				type: "GET",
+				url: '${apiSort}',
+				contentType: 'application/json',
+	            data: JSON.stringify(data),
+	            dataType: 'json',
+	            success: function(e){
+	            	console.log("ok ok")
+	            },
+	            error: function(e){
+	            	console.log("ERROR: " + e)
+	            }
+			})
+		}
 	</script>
-</body>
-</html>

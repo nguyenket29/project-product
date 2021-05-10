@@ -23,4 +23,24 @@ public class CategoryEntity extends BaseEntity{
 	public List<ProductEntity> getNews() {
 		return news;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public void setNews(List<ProductEntity> news) {
+		this.news = news;
+	}
 }

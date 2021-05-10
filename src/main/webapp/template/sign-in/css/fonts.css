@@ -1,0 +1,20 @@
+label {
+	font-size: 13px;
+	color: #495057;
+	margin-left: 10px;
+	margin-bottom: 4px;
+}
+
+span {
+	color: red;
+	font-size: 13px;
+	margin-top:5px;
+	margin-left: 10px;
+}
+
+p {
+	color: red;
+	font-size: 13px;
+	margin-left: 10px;
+	margin-top:5px;
+}

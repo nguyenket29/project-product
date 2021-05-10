@@ -13,25 +13,30 @@ import javax.persistence.Table;
 
 @Table(name = "user")
 @Entity
-public class UserEntity extends BaseEntity{
+public class UserEntity extends BaseEntity {
 	@Column(name = "username")
 	private String userName;
-	
+
 	@Column(name = "password")
 	private String password;
-	
+
+	@Column(name = "confirmpassword")
+	private String confirmPassword;
+
 	@Column(name = "fullname")
 	private String fullName;
-	
+
+	@Column(name = "email")
+	private String email;
+
 	@Column(name = "status")
 	private Integer status;
-	
+
 	@Column(name = "roleid")
 	private Long roleId;
-	
+
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name ="user_role",joinColumns = @JoinColumn(name = "userid"),
-								inverseJoinColumns = @JoinColumn(name = "roleid"))
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "roleid"))
 	private List<RoleEntity> roles = new ArrayList<>();
 
 	public String getUserName() {
@@ -66,6 +71,22 @@ public class UserEntity extends BaseEntity{
 		this.status = status;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Long getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
+	}
+
 	public List<RoleEntity> getRoles() {
 		return roles;
 	}
@@ -73,5 +94,13 @@ public class UserEntity extends BaseEntity{
 	public void setRoles(List<RoleEntity> roles) {
 		this.roles = roles;
 	}
-	
+
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+
 }
