@@ -69,7 +69,7 @@ public class RegisterController {
 
 	@PostMapping("/confirm")
 	public ModelAndView confirm(@RequestParam("token") String verificationToken, ModelAndView mav) {
-		mav = new ModelAndView("/register/home");
+		mav = new ModelAndView("/confirm/home");
 		VerificationDTO token = verificationService.finByVerificationToken(verificationToken);
 		if (token != null) {
 			UserDTO user = userService.findById(token.getUser().getId());

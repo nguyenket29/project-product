@@ -8,7 +8,6 @@
 			<div class="card card-signin mb-5">
 				<div class="card-body">
 					<h5 class="card-title text-center" style="font-weight: bold;">Register</h5>
-					<p>${confirm}</p>
 					<p>${success}</p>
 					<form:form cssClass="form-signin" method="post"
 						modelAttribute="userForm">
